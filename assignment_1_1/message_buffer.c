@@ -58,14 +58,14 @@ int produce(MessageBuffer **buffer, int sender_id, int data, int account_id) {
     /*---------------------------------------*/
     /* TODO 3 : produce message              */
     int value = 0 ;
-    value = (*buffer)->messages[account_id]->data + data;
+    value = (*buffer)->messages[account_id].data + data;
     if(value<0){
-        printf("잔고가 부족합니다.")
+        printf("잔고가 부족합니다.");
     }
     else{
         (*buffer)->is_empty = 0;
-        (*buffer)->messages[account_id]->data = value;
-        (*buffer)->messages[account_id]->sender_id = sender_id;
+        (*buffer)->messages[account_id].data = value;
+        (*buffer)->messages[account_id].sender_id = sender_id;
     }
     /* TODO 3 : END                          */
     /*---------------------------------------*/
@@ -82,8 +82,8 @@ int consume(MessageBuffer **buffer, Message **message) {
     /*---------------------------------------*/
     /* TODO 4 : consume message              */
     else{
-        **message->data = (*buffer)->messages[(*buffer)->account_id]->data;
-        **message->sender_id = (*buffer)->messages[(*buffer)->account_id]->sender_id;
+        (**message)->data = (*buffer)->messages[(*buffer)->account_id].data;
+        (**message)->sender_id = (*buffer)->messages[(*buffer)->account_id].sender_id;
         (*buffer)->is_empty = 1;
     }
 
