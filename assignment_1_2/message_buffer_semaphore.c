@@ -17,7 +17,6 @@ void init_sem() {
     /*---------------------------------------*/
     /* TODO 1 : init semaphore               */
        if ((semid = semget(SEM_KEY, 1, IPC_CREAT|IPC_EXCL|0666)) == -1) {
-        // try as a client
         if ((semid = semget(SEM_KEY, 0, 0)) == -1) return -1;
     } else {
         sem_union.val = 1;
@@ -33,7 +32,6 @@ void destroy_sem() {
     /*---------------------------------------*/
     /* TODO 2 : destroy semaphore            */
     if ((semid = semget(SEM_KEY, 1, IPC_CREAT|IPC_EXCL|0666)) == -1) {
-        // try as a client
         if ((semid = semget(SEM_KEY, 0, 0)) == -1) return -1;
     }
 
@@ -126,7 +124,7 @@ int produce(MessageBuffer **buffer, int sender_id, int data, int account_id) {
     int value = 0 ;
     value = (*buffer)->messages[account_id].data + data;
     if(value<0){
-        printf("잔고가 부족합니다.")
+        printf("잔고가 부족합니다.");
     }
     else{
         (*buffer)->is_empty = 0;
@@ -149,8 +147,8 @@ int consume(MessageBuffer **buffer, Message **message) {
     /*---------------------------------------*/
     /* TODO 4 : consume message              */
     else{
-        **message.data = (*buffer)->messages[(*buffer)->account_id].data;
-        **message.sender_id = (*buffer)->messages[(*buffer)->account_id].sender_id;
+        (**message).data = (*buffer)->messages[(*buffer)->account_id].data;
+        (**message).sender_id = (*buffer)->messages[(*buffer)->account_id].sender_id;
         (*buffer)->is_empty = 1;
     }
     s_quit();

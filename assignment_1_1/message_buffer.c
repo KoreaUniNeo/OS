@@ -64,6 +64,7 @@ int produce(MessageBuffer **buffer, int sender_id, int data, int account_id) {
     }
     else{
         (*buffer)->is_empty = 0;
+        (*buffer)->account_id = account_id;
         (*buffer)->messages[account_id].data = value;
         (*buffer)->messages[account_id].sender_id = sender_id;
     }
