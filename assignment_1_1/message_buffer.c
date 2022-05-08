@@ -82,8 +82,8 @@ int consume(MessageBuffer **buffer, Message **message) {
     /*---------------------------------------*/
     /* TODO 4 : consume message              */
     else{
-        (**message)->data = (*buffer)->messages[(*buffer)->account_id].data;
-        (**message)->sender_id = (*buffer)->messages[(*buffer)->account_id].sender_id;
+        (**message).data = (*buffer)->messages[(*buffer)->account_id].data;
+        (**message).sender_id = (*buffer)->messages[(*buffer)->account_id].sender_id;
         (*buffer)->is_empty = 1;
     }
 
